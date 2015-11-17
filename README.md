@@ -30,22 +30,10 @@ See usage and example for all these functions, plus some examples of the one-lin
 
 ## Usage
 
+Before anything, let's go through some quick one-liners, most of them using `pgn-extract` package.
 
-### Handling PGN files
+### One-liners
 
-Note: for all commands herein, it is assumed that there is one game per pgn file.
-
-```
-FUNCTION        ARGS.             DESCRIPTION
--------------   ---------------   ----------------------------------------------------------------------
-pgneco          file.pgn | -all   Adds ECO, Opening, Variation
-pgnfen          file.pgn | -all   Adds end-game position (FEN)
-pgnecofen       file.pgn | -all   Adds ECO, Opening, Variation, plus end-game position (FEN)
-pgnsummary      file.pgn | -all   Outputs data of pgn file(s). Execute with no arguments to get help.
-pgnscore        playername        Outputs scores for the player, over all pgn files in current folder.
-```
-
-#### Straightforward commands from the pgn-extract package
 *Insert in files.pgn: ECO, Opening, Variation (if any), FEN*
 
 `pgn-extract -s -e -F file.pgn | sponge file.pgn`
@@ -63,23 +51,42 @@ pgnscore        playername        Outputs scores for the player, over all pgn fi
 `pgn-extract -#1 lotsofmatches.pgn`
 
 *Easy to read, clean, table, one move per line, Chessmaster format*
+
 `pgn-extract -Wcm file.pgn`
 
-For more on how to use the pgn-extract package, try `pgn-extract -h` or see `pgn-extract`'s [author's page](http://cs.kent.ac.uk/people/staff/djb/pgn-extract/help.html).
-
-#### Bash one-liner
 *Query the openings of all matches in this folder*
 
 `cat *.pgn | sed -n '/^.Opening/ s/.*"\(.*\)".*/\1/ p'`
 
-#### Saves pgn from a 365chess.com link and makes it tidy
+For more on how to use the pgn-extract package, try `pgn-extract -h` or see `pgn-extract`'s [author's page](http://cs.kent.ac.uk/people/staff/djb/pgn-extract/help.html).
+
+
+And here are the new functions that come with this script:
+
+### Saving a pgn from a 365chess.com link and making it tidy
 
 `pgn365 www.365chess.com/view_game.php?g=3962489`  or   `pgn365 3962489`
 
 
+### Handling PGN files
+
+Commands: `pgneco`, `pgnfen`, `pgnecofen`, `pgnsummary`, `pgnscore`.
+
+Note: for all commands herein, it is assumed that there is one game per pgn file.
+
+```
+FUNCTION        ARGS.             DESCRIPTION
+-------------   ---------------   ----------------------------------------------------------------------
+pgneco          file.pgn | -all   Adds ECO, Opening, Variation
+pgnfen          file.pgn | -all   Adds end-game position (FEN)
+pgnecofen       file.pgn | -all   Adds ECO, Opening, Variation, plus end-game position (FEN)
+pgnsummary      file.pgn | -all   Outputs data of pgn file(s). Execute with no arguments to get help.
+pgnscore        playername        Outputs scores for the player, over all pgn files in current folder.
+```
+
 ### Direct querying
 
-Available commands are: `str2eco`, `moves2eco`, `fen2board`, `moves2board`, `moves2anim`.  
+Commands are: `str2eco`, `moves2eco`, `fen2board`, `moves2board`, `moves2anim`.  
 
 #### str2eco
 Queries the Encyclopedia of Chess Openings for all openings with given string(s)
