@@ -46,9 +46,12 @@ pgnscore        playername        Outputs scores for the player, over all pgn fi
 ```
 
 #### Straightforward commands from the pgn-extract package
-*Insert in files.pgn (or below: in all files in folder): ECO, Opening, Variation (if any), FEN*
+*Insert in files.pgn: ECO, Opening, Variation (if any), FEN*
 
 `pgn-extract -s -e -F file.pgn | sponge file.pgn`
+
+*Insert in all PGN files in folder: ECO, Opening, Variation (if any), FEN*
+
 `for i in *.pgn; do pgn-extract -s -e -F $i | sponge $i ; done && clear`
 
 *For file.pgn, give me only the moves, no numbering, no tags*
@@ -69,13 +72,10 @@ For more on how to use the pgn-extract package, try `pgn-extract -h` or see `pgn
 
 `cat *.pgn | sed -n '/^.Opening/ s/.*"\(.*\)".*/\1/ p'`
 
-*Downloading games*
+#### Saves pgn from a 365chess.com link and makes it tidy
 
-Saves pgn from a 365chess.com link and makes it tidy
-```
-pgn365 www.365chess.com/view_game.php?g=3962489
-pgn365 3962489
-```
+`pgn365 www.365chess.com/view_game.php?g=3962489`  or   `pgn365 3962489`
+
 
 ### Direct querying
 
