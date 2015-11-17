@@ -46,33 +46,36 @@ pgnscore        playername        Outputs scores for the player, over all pgn fi
 ```
 
 #### Straightforward commands from the pgn-extract package
-**Insert in files.pgn (or below: in all files in folder): ECO, Opening, Variation (if any), FEN**
+*Insert in files.pgn (or below: in all files in folder): ECO, Opening, Variation (if any), FEN*
 
 `pgn-extract -s -e -F file.pgn | sponge file.pgn`
 `for i in *.pgn; do pgn-extract -s -e -F $i | sponge $i ; done && clear`
 
-**For file.pgn, give me only the moves, no numbering, no tags**
+*For file.pgn, give me only the moves, no numbering, no tags*
 
 `pgn-extract --nomovenumbers --noresults --notags -C -N -V file.pgn`
 
-**Splits lotsofmatches.pgn into single files with one game each**
+*Splits lotsofmatches.pgn into single files with one game each*
 
 `pgn-extract -#1 lotsofmatches.pgn`
 
-**Easy to read, clean, table, one move per line, Chessmaster format**
+*Easy to read, clean, table, one move per line, Chessmaster format*
 `pgn-extract -Wcm file.pgn`
 
 For more on how to use the pgn-extract package, try `pgn-extract -h` or see `pgn-extract`'s [author's page](http://cs.kent.ac.uk/people/staff/djb/pgn-extract/help.html).
 
 #### Bash one-liner
-**Query the openings of all matches in this folder**
+*Query the openings of all matches in this folder*
 
 `cat *.pgn | sed -n '/^.Opening/ s/.*"\(.*\)".*/\1/ p'`
 
-**Downloading games**
+*Downloading games*
+
 Saves pgn from a 365chess.com link and makes it tidy
-`pgn365 www.365chess.com/view_game.php?g=3962489` or
-`pgn365 3962489`
+```
+pgn365 www.365chess.com/view_game.php?g=3962489
+pgn365 3962489
+```
 
 ### Direct querying
 
