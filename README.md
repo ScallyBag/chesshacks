@@ -38,25 +38,31 @@ Before anything, let's go through some quick one-liners, most of them using `pgn
 
 `pgn-extract -s -e -F file.pgn | sponge file.pgn`
 
+
 *Insert in all PGN files in folder: ECO, Opening, Variation (if any), FEN*
 
 `for i in *.pgn; do pgn-extract -s -e -F $i | sponge $i ; done && clear`
+
 
 *For file.pgn, give me only the moves, no numbering, no tags*
 
 `pgn-extract --nomovenumbers --noresults --notags -C -N -V file.pgn`
 
+
 *Splits lotsofmatches.pgn into single files with one game each*
 
 `pgn-extract -#1 lotsofmatches.pgn`
+
 
 *Easy to read, clean, table, one move per line, Chessmaster format*
 
 `pgn-extract -Wcm file.pgn`
 
+
 *Query the openings of all matches in this folder*
 
 `cat *.pgn | sed -n '/^.Opening/ s/.*"\(.*\)".*/\1/ p'`
+
 
 For more on how to use the pgn-extract package, try `pgn-extract -h` or see `pgn-extract`'s [author's page](http://cs.kent.ac.uk/people/staff/djb/pgn-extract/help.html).
 
@@ -92,26 +98,26 @@ Commands are: `str2eco`, `moves2eco`, `fen2board`, `moves2board`, `moves2anim`.
 Queries the Encyclopedia of Chess Openings for all openings with given string(s)
 e.g: (1) single input; (2) two inputs: print any; (3) two inputs: separated by unescaped space: both must occur
 ```
-     (1) str2eco elephant
-     (1) str2eco ruy\ lopez            # escaped spaces: counts as one string
-     (2) str2eco bayonet\|crab         # bayonet OR crab
-     (3) str2eco KGD gambit            # show all gambits stemming from KGD (i.e. gambit AND KGD)
-     (3) str2eco "1. e4 c6" gambit     # show all gambits that start with Caro-Kann
+(1) str2eco elephant
+(1) str2eco ruy\ lopez         # escaped spaces: counts as one string
+(2) str2eco bayonet\|crab      # bayonet OR crab
+(3) str2eco KGD gambit         # show all gambits stemming from KGD (i.e. gambit AND KGD)
+(3) str2eco "1. e4 c6" gambit  # show all gambits that start with Caro-Kann
 ```
 
 #### moves2eco
-Gets chess moves from the clipboard and outputs best fit of ECO, Opening, Variation.
-Besides FIDE-enforced SAN, formats may be Coordinate (with or without dashes, in lowercase), LAN, RAN. Check [Chess notation](https://en.wikipedia.org/wiki/Chess_notation) for more information.
-Clipboard input must have an ending (score or *). Function has no variables. E.g.:
-`1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. Nf3 O-O 6. Be2 e5 7. O-O Nc6 *`
-Copying the above and running the command returns:
+Gets chess moves from the clipboard and outputs best fit of ECO, Opening, Variation. Besides FIDE-enforced SAN, formats may be Coordinate (with or without dashes, in lowercase), LAN, RAN. Check [Chess notation](https://en.wikipedia.org/wiki/Chess_notation) for more information. 
+
+Clipboard input must have an ending (score or *). E.g.: `1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. Nf3 O-O 6. Be2 e5 7. O-O Nc6 *`. 
+
+Copying the above and running `moves2eco` returns:
 
 `(E97) King's Indian, orthodox, Aronin-Taimanov variation (Yugoslav attack / Mar del Plata variation)`
 
 #### fen2board
-Converts a FEN stored in clipboard to a board position
-Try with this in your clipboard:   `r5r1/5Rbk/p6Q/1p1PpN2/4P1p1/8/PP3PP1/6K1 b - - 0 37`
-To use figurines instead of letters, enter `fen2board w` if you have a white background, or `fen2board d` for dark background. For example, running the former would yield:
+Converts a [FEN](https://en.wikipedia.org/wiki/Forsyth–Edwards_Notation) stored in clipboard to a board position. Try with this in your clipboard: `r5r1/5Rbk/p6Q/1p1PpN2/4P1p1/8/PP3PP1/6K1 b - - 0 37`. To use figurines instead of letters, enter `fen2board w` if you have a white background, or `fen2board d` for dark background. 
+
+For example, running the former would yield:
 ```
 ♜ . . . . . ♜ . 
 . . . . . ♖ ♝ ♚ 
@@ -124,9 +130,8 @@ To use figurines instead of letters, enter `fen2board w` if you have a white bac
 ```
 
 #### moves2board
-Gets chess moves from the clipboard and outputs the board at the final position.
-Try with this in your clipboard:   `1. e4 e5 2. Nf3 Nc6 3. Bb5 Nf6 4. O-O Nxe4 5. d4 Be7 6. dxe5 *`
-To use figurines instead of letters, enter `moves2board w` if you have a white background, or `moves2board d` for dark background. You can add `-r` to see the board from the blacks perspective.
+Gets chess moves from the clipboard and outputs the board at the final position. Try with this in your clipboard:   `1. e4 e5 2. Nf3 Nc6 3. Bb5 Nf6 4. O-O Nxe4 5. d4 Be7 6. dxe5 *`. To use figurines instead of letters, enter `moves2board w` if you have a white background, or `moves2board d` for dark background. You can add `-r` to see the board from the blacks perspective.
+
 For example, running `moves2board w` would yield:
 ```
 ♜ . ♝ ♛ ♚ . . ♜ 
@@ -140,9 +145,10 @@ For example, running `moves2board w` would yield:
 ```
 
 #### moves2anim
-Gets moves from the clipboard and shows the board move by move.
-Try with this in your clipboard:   `1. e4 e5 2. Nf3 Nc6 3. Bb5 Nf6 4. O-O Nxe4 5. d4 Be7 6. dxe5 *`
-To use figurines instead of letters, enter `moves2anim w` if you have a white background, or `moves2anim d` for dark background. You can add `-r` to see the board from the blacks perspective.
+Gets moves from the clipboard and shows the board move by move. Try with this in your clipboard:   `1. e4 e5 2. Nf3 Nc6 3. Bb5 Nf6 4. O-O Nxe4 5. d4 Be7 6. dxe5 *`. 
+
+To use figurines instead of letters, enter `moves2anim w` if you have a white background, or `moves2anim d` for dark background. You can add `-r` to see the board from the blacks perspective. 
+
 Running `moves2anim w` with the above would refresh the screen and keep playing the game as `enter` is pressed, showing this after the fifth ply:
 ```
 1. e4 e5 2. Nf3 Nc6 3. Bb5 Nf6 4. O-O Nxe4 5. d4 Be7 6. dxe5 *

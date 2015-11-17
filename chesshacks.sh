@@ -156,7 +156,7 @@ ${YELLOW}moves2eco${NC}
 Gets chess moves from the clipboard and outputs best fit of ECO, Opening, Variation.
 Besides FIDE-enforced SAN, formats may be Coordinate (with or without dashes, in lowercase), LAN, RAN.
     Check ${LIGHTPURPLE}https://en.wikipedia.org/wiki/Chess_notation${NC} for more information.
-Clipboard input must have an ending (score or *). Function has no variables. E.g.:
+Clipboard input must have an ending (score or *). E.g.:
 1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. Nf3 O-O 6. Be2 e5 7. O-O Nc6 *
 Copying the above and running the command returns:
 (E97) King's Indian, orthodox, Aronin-Taimanov variation (Yugoslav attack / Mar del Plata variation)
