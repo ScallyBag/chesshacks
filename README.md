@@ -34,32 +34,32 @@ Before anything, let's go through some quick one-liners, most of them using `pgn
 
 ### One-liners
 
-*Insert in files.pgn: ECO, Opening, Variation (if any), FEN*
+* *Insert in files.pgn: ECO, Opening, Variation (if any), FEN*
 
 `pgn-extract -s -e -F file.pgn | sponge file.pgn`
 
 
-*Insert in all PGN files in folder: ECO, Opening, Variation (if any), FEN*
+* *Insert in all PGN files in folder: ECO, Opening, Variation (if any), FEN*
 
 `for i in *.pgn; do pgn-extract -s -e -F $i | sponge $i ; done && clear`
 
 
-*For file.pgn, give me only the moves, no numbering, no tags*
+* *For file.pgn, give me only the moves, no numbering, no tags*
 
 `pgn-extract --nomovenumbers --noresults --notags -C -N -V file.pgn`
 
 
-*Splits lotsofmatches.pgn into single files with one game each*
+* *Splits lotsofmatches.pgn into single files with one game each*
 
 `pgn-extract -#1 lotsofmatches.pgn`
 
 
-*Easy to read, clean, table, one move per line, Chessmaster format*
+* *Easy to read, clean, table, one move per line, Chessmaster format*
 
 `pgn-extract -Wcm file.pgn`
 
 
-*Query the openings of all matches in this folder*
+* *Query the openings of all matches in this folder*
 
 `cat *.pgn | sed -n '/^.Opening/ s/.*"\(.*\)".*/\1/ p'`
 
