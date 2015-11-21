@@ -99,14 +99,13 @@ Gets chess moves from the clipboard and outputs best fit of ECO, Opening, Variat
 
 Clipboard input must have an ending (score or *). E.g.: `1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 d6 5. Nf3 O-O 6. Be2 e5 7. O-O Nc6 *`. 
 
-Copying the above and running `moves2eco` returns:
-
+Copying the above and running `moves2eco` returns:  
 `(E97) King's Indian, orthodox, Aronin-Taimanov variation (Yugoslav attack / Mar del Plata variation)`
 
 #### fen2board
 Converts a [FEN](https://en.wikipedia.org/wiki/Forsyth–Edwards_Notation) stored in clipboard to a board position. Try with this in your clipboard: `r5r1/5Rbk/p6Q/1p1PpN2/4P1p1/8/PP3PP1/6K1 b - - 0 37`. To use figurines instead of letters, enter `fen2board w` if you have a white background, or `fen2board d` for dark background. 
 
-For example, running the former would yield:
+For example, running the former would yield:  
 ```
 ♜ . . . . . ♜ . 
 . . . . . ♖ ♝ ♚ 
@@ -121,7 +120,7 @@ For example, running the former would yield:
 #### moves2board
 Gets chess moves from the clipboard and outputs the board at the final position. Try with this in your clipboard:   `1. e4 e5 2. Nf3 Nc6 3. Bb5 Nf6 4. O-O Nxe4 5. d4 Be7 6. dxe5 *`. To use figurines instead of letters, enter `moves2board w` if you have a white background, or `moves2board d` for dark background. You can add `-r` to see the board from the blacks perspective.
 
-For example, running `moves2board w` would yield:
+For example, running `moves2board w` would yield:  
 ```
 ♜ . ♝ ♛ ♚ . . ♜ 
 ♟ ♟ ♟ ♟ ♝ ♟ ♟ ♟ 
@@ -138,7 +137,7 @@ Gets moves from the clipboard and shows the board move by move. Try with this in
 
 To use figurines instead of letters, enter `moves2anim w` if you have a white background, or `moves2anim d` for dark background. You can add `-r` to see the board from the blacks perspective. 
 
-Running `moves2anim w` with the above would refresh the screen and keep playing the game as `enter` is pressed, showing this after the fifth ply:
+Running `moves2anim w` with the above would refresh the screen and keep playing the game as `enter` is pressed, showing this after the fifth ply:  
 ```
 1. e4 e5 2. Nf3 Nc6 3. Bb5 Nf6 4. O-O Nxe4 5. d4 Be7 6. dxe5 *
 
